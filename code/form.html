@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Регистрация на мастер-класс</title>
+</head>
+
+<body>
+
+    <h1>Регистрация на мастер-класс</h1>
+
+    <form id="myForm">
+        <input type="text" name="username" placeholder="Введите имя" required><br><br>
+
+        <label>Дата рождения:</label>
+        <input type="date" name="birthdate" required><br><br>
+
+        <select name="topic">
+            <option value="Веб-разработка">Веб-разработка</option>
+            <option value="Дизайн">Дизайн</option>
+            <option value="Маркетинг">Маркетинг</option>
+        </select><br><br>
+
+        <input type="checkbox" name="materials" value="Да"> Материалы включены<br><br>
+
+        <input type="radio" name="format" value="Онлайн" required> Онлайн
+        <input type="radio" name="format" value="Очно"> Очно<br><br>
+
+        <button type="submit">Отправить</button>
+    </form>
+
+    <div id="result"></div>
+
+    <script>
+        document.getElementById("myForm").addEventListener("submit", function (e) {
+            e.preventDefault();
+
+            const formData = new FormData(this);
+            let output = "";
+            for (const [name, value] of formData.entries()) {
+                output += `<p><b>${name}:</b> ${value}</p>`;
+            }
+
+            document.getElementById("result").innerHTML = output;
+        });
+    </script>
+
+</body>
+
+</html>
