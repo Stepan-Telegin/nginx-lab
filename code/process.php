@@ -7,6 +7,16 @@ $topic = htmlspecialchars($_POST['topic'] ?? '');
 $materials = isset($_POST['materials']) ? htmlspecialchars($_POST['materials']) : 'Нет';
 $format = htmlspecialchars($_POST['format'] ?? '');
 
+$errors = [];
+if(empty($username)) $errors[] = "Имя не может быть пустым";
+if(empty($birthdate)) $errors[] = "Дата рождения обязательна";
+
+if(!empty($errors)){
+    $_SESSION['errors'] = $errors;
+    header("Location: index.php");
+    exit();
+}
+
 $_SESSION['username'] = $username;
 $_SESSION['birthdate'] = $birthdate;
 $_SESSION['topic'] = $topic;
