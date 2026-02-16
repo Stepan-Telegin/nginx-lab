@@ -13,5 +13,8 @@ $_SESSION['topic'] = $topic;
 $_SESSION['materials']= $materials;
 $_SESSION['format'] = $format;
 
+$line = $username . ";" . $birthdate . ";" . $topic . ";" . $materials . ";" . $format . "\n";
+file_put_contents("data.txt", $line, FILE_APPEND);
+
 header("Location: index.php");
 exit();
