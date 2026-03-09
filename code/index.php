@@ -1,4 +1,8 @@
-<?php session_start(); ?>
+<?php session_start();
+require_once 'UserInfo.php';
+$info = UserInfo::getInfo();
+?>
+
 <!DOCTYPE html>
 <html lang="ru">
 
@@ -41,6 +45,13 @@
     <a href="form.html">Заполнить форму еще раз</a> | 
     <a href="view.php">Посмотреть все сохраненные данные</a>
 
+    <?php
+    echo "<h3>Информация о пользователе:</h3>";
+    foreach ($info as $key => $val) {
+        echo htmlspecialchars($key) . ': ' . htmlspecialchars($val) . '<br>';
+    }
+    ?>
+    
 </body>
 
 </html>
