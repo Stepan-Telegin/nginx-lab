@@ -26,5 +26,13 @@ $_SESSION['format'] = $format;
 $line = $username . ";" . $birthdate . ";" . $topic . ";" . $materials . ";" . $format . "\n";
 file_put_contents("data.txt", $line, FILE_APPEND);
 
+require_once 'ApiClient.php';
+$api = new ApiClient();
+
+$url = 'https://api.artic.edu/api/v1/artworks';
+$apiData = $api->request($url);
+
+$_SESSION['api_data'] = $apiData;
+
 header("Location: index.php");
 exit();
