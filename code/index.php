@@ -52,6 +52,26 @@ $info = UserInfo::getInfo();
     }
     ?>
     
+    <?php
+    require_once 'db.php';
+    require_once 'Registration.php';
+    
+    $registration = new Registration($pdo);
+    $all = $registration->getAll();
+    ?>
+    
+    <h2>Сохранённые данные из базы данных:</h2>
+    <ul>
+    <?php foreach($all as $row): ?>
+        <li><?= htmlspecialchars($row['name']) ?>, 
+            <?= htmlspecialchars($row['birthdate']) ?>, 
+            <?= htmlspecialchars($row['topic']) ?>, 
+            Формат: <?= htmlspecialchars($row['format']) ?>, 
+            Материалы: <?= $row['materials'] ? 'Да' : 'Нет' ?>
+        </li>
+    <?php endforeach; ?>
+    </ul>
+
 </body>
 
 </html>

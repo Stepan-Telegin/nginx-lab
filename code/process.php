@@ -26,6 +26,14 @@ $_SESSION['format'] = $format;
 $line = $username . ";" . $birthdate . ";" . $topic . ";" . $materials . ";" . $format . "\n";
 file_put_contents("data.txt", $line, FILE_APPEND);
 
+require_once 'db.php';
+require_once 'Registration.php';
+
+$materials_for_db = ($materials === 'Да') ? 1 : 0;
+
+$registration = new Registration($pdo);
+$registration->add($username, $birthdate, $topic, $materials_for_db, $format);
+
 require_once 'ApiClient.php';
 $api = new ApiClient();
 
