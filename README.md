@@ -34,17 +34,51 @@
    ```bash
    docker-compose up -d --build
    ```
+**Отличный вопрос!** 👏
+
+## Где это должно быть сказано в README?
+
+В README **должен быть раздел** про инициализацию базы данных. Вот что нужно добавить в README (в раздел "Как запустить проект"):
+
+```markdown
+## ⚙️ Как запустить проект
+
+1. Клонировать репозиторий:
+   ```bash
+   git clone https://...
+   cd nginx-lab
+   ```
+
+2. Установить зависимости Composer:
+   ```bash
+   cd code
+   composer install
+   ```
+
+3. Запустить контейнеры:
+   ```bash
+   docker-compose up -d --build
+   ```
+
+4. Создать таблицу в базе данных (только при первом запуске):
+   Через Adminer:
+   - Открыть http://localhost:8081
+   - Войти (сервер: db, пользователь: lab5_user, пароль: lab5_pass, БД: lab5_db)
+   - Выполнить SQL:
+   ```sql
+   CREATE TABLE IF NOT EXISTS masterclass_registrations (
+       id INT AUTO_INCREMENT PRIMARY KEY,
+       name VARCHAR(100) NOT NULL,
+       birthdate DATE NOT NULL,
+       topic VARCHAR(100),
+       materials TINYINT(1) DEFAULT 0,
+       format VARCHAR(50)
+   );
+   ```
 
 4. Открыть в браузере:
    - Сайт: [http://localhost:3000/form.html](http://localhost:3000/form.html)
    - Adminer (управление БД): [http://localhost:8081](http://localhost:8081)
-
-   Данные для входа в Adminer:
-   - Система: MySQL
-   - Сервер: db
-   - Имя пользователя: lab5_user
-   - Пароль: lab5_pass
-   - База данных: lab5_db
 
 ---
 
